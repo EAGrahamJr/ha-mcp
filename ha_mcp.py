@@ -27,6 +27,7 @@ import sys
 import urllib.error
 import urllib.request
 from collections import Counter
+from datetime import UTC
 from fnmatch import fnmatch
 
 from mcp.server.fastmcp import FastMCP
@@ -105,10 +106,10 @@ def ha_get_state(entity_id: str) -> str:
 @mcp.tool()
 def ha_history(entity_id: str, hours: int = 24) -> str:
     """Compact state history for one entity over the last N hours (max 168)."""
-    from datetime import datetime, timedelta, timezone
+    from datetime import datetime, timedelta
 
     hours = max(1, min(hours, 168))
-    start = (datetime.now(timezone.utc) - timedelta(hours=hours)).isoformat()
+    start = (datetime.now(UTC) - timedelta(hours=hours)).isoformat()
     start = start.replace("+", "%2B")
     data = _request(
         "GET",

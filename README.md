@@ -39,6 +39,14 @@ Add this to your local Claude `config`:
 5. Name it something like claude-mcp so you can recognize it later, then confirm.
 6. Copy the token right away. Home Assistant shows it only once. If you lose it, you have to delete it and create a new one.
 
+## Tools
+
+Observe-only tools (always registered):
+
+- `ha_summary`: entity count per domain.
+- `ha_list_entities`: entities with state and friendly name, optionally filtered by domain.
+- `ha_get_state`: full state and attributes for one entity.
+- `ha_history`: compact state history for one entity (up to 168 hours).
 ## Enabling control
 
 The server is **observe-only by default**. The write tool (`ha_call_service`) is not even registered until you set `HA_MCP_ALLOW`. Two environment variables control what it may do:
